@@ -22,4 +22,4 @@ According to above rules the maximum sum of the numbers from top to bottom in be
 
 ## Solution Flowchart
 
-![Algorithm](https://drive.google.com/file/d/1LOdfF2ahd9HsAHopa-N5UmmRlSa1XlIr/view?usp=sharing)
+![Algorithm](../Algorithm.png?raw=true)
