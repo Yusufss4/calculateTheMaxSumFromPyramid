@@ -22,4 +22,4 @@ According to above rules the maximum sum of the numbers from top to bottom in be
 
 ## Solution Flowchart
 
-![Algorithm](../Algorithm.png?raw=true)
+![Algorithm](../CalculateTheMaxSumFromTriangle/Algorithm.png?raw=true)
