@@ -23,3 +23,10 @@ According to above rules the maximum sum of the numbers from top to bottom in be
 ## Solution Flowchart
 
 ![Algorithm](https://github.com/Yusufss4/calculateTheMaxSumFromPyramid/blob/main/CalculateTheMaxSumFromTriangle/Algorithm.png?raw=true)
+
+## What can be improved?
+
+1. Currently if there is no path available it doesnt give an error. It should be implemented. 
+2. Finding the prime algorithm can be improved by using another complex algorithms.
+3. Try and catch code blocks should be added in file read, input read and convertStringToTheIntMatrix functions.
+
