@@ -2,12 +2,18 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Scanner;
-/* Algorithm for finding the maximum sum of the proper path with the rules below in orthogonal triangle.
+/* 
+   Yusuf Savaþ - yusufsss4@gmail.com
+   
+   Private GitHub Repo: https://github.com/Yusufss4/calculateTheMaxSumFromPyramid
+   Explanation for algorithm can be found in the GitHub. 
+   
+   Algorithm for finding the maximum sum of the proper path with the rules below in orthogonal triangle.
    1 - You will start from the top and move downwards to an adjacent number as in below.
    2 - You are only allowed to walk downwards and diagonally.
    3 - You can only walk over NON PRIME NUMBERS.
    4 - You have to reach at the end of the pyramid as much as possible.
-   5 - You have to treat the input as pyramid..
+   5 - You have to treat the input as pyramid.
 */
 public class calculateTheMaxSumFromTriangle {
 
