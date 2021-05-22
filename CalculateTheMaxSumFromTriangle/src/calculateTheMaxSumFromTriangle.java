@@ -14,6 +14,7 @@ import java.util.Scanner;
    3 - You can only walk over NON PRIME NUMBERS.
    4 - You have to reach at the end of the pyramid as much as possible.
    5 - You have to treat the input as pyramid.
+   
 */
 public class calculateTheMaxSumFromTriangle {
 
