@@ -38,14 +38,18 @@ public class calculateTheMaxSumFromTriangle {
 		
 		//Read text from constant input
 		int[][] matrixFormOfTriangle = convertStringToTheIntMatrix(inputString);
-		printMatrix(matrixFormOfTriangle);
+		//printMatrix(matrixFormOfTriangle);
 
 		matrixFormOfTriangle = removePrimeNumbersFromMatrix(matrixFormOfTriangle);
-		printMatrix(matrixFormOfTriangle);
+		//printMatrix(matrixFormOfTriangle);
 
 		System.out.println("Maximum sum of the proper path for the given input is:");
 		System.out.println(traverseTheMatrixAndModifyIt(matrixFormOfTriangle));
-
+		//System.out.println("Modified Matrix is:");
+		//printMatrix(matrixFormOfTriangle);
+		
+		
+		
 		//Read text from file
 		Scanner sc = new Scanner(System.in);
 		try {
@@ -65,9 +69,16 @@ public class calculateTheMaxSumFromTriangle {
 			// printMatrix(matrixFormOfTriangleInputFromText);
 
 			System.out.println("Maximum sum of the proper path for the given input is:");
-			System.out.println(traverseTheMatrixAndModifyIt(matrixFormOfTriangleInputFromText));
+			int maxSum = traverseTheMatrixAndModifyIt(matrixFormOfTriangleInputFromText);
+	        if (maxSum == 0 || maxSum == -1)
+	        {  
+	        	System.out.println("No Possible Path");
+	        	}
+	        else {
+			System.out.println(maxSum); }
 
 		} catch (IOException e) {
+			System.out.println("Some error has occured: ");
 			e.printStackTrace();
 		} finally {
 			sc.close();
@@ -139,40 +150,74 @@ public class calculateTheMaxSumFromTriangle {
 
 	public static int traverseTheMatrixAndModifyIt(int[][] matrix) {
 
-		int m = matrix.length;
-		m = m - 1;
-		for (int i = m - 1; i >= 0; i--) {
-			for (int j = 0; j <= i; j++) {
-				// for each element, check both
-				// elements just below the number
-				// and below right to the number
-				// add the maximum of them to it
-				if (matrix[i][j] == -1) {
-					// it is prime
-					continue;
-				} else if (matrix[i + 1][j] == -1 && matrix[i + 1][j + 1] == -1) {
-					continue; // Controls for if the number is prime or not.
-				} else if (matrix[i + 1][j] == -1 && matrix[i + 1][j + 1] != -1) {
-					matrix[i][j] += matrix[i + 1][j + 1];
-				} else if (matrix[i + 1][j] != -1 && matrix[i + 1][j + 1] == -1) {
-					matrix[i][j] += matrix[i + 1][j];
-				}
+		 int length = matrix.length;
 
-				else if (matrix[i + 1][j] > matrix[i + 1][j + 1])
-					matrix[i][j] += matrix[i + 1][j];
-				else
-					matrix[i][j] += matrix[i + 1][j + 1];
+         int result = (matrix[0][0] == -1) ? -1:matrix[0][0]; //One input pyramid check
+  
+         for (int i = 1; i < length; i++)
+         {
+        	 result = -1;
+             for (int j = 0; j < length; j++)
+             {
+                 if (j == 0 && matrix[i][j] != -1)
+                 {
+                     if (matrix[i - 1][j] != -1)
+                    	 matrix[i][j] += matrix[i - 1][j];
+                     else
+                    	 matrix[i][j] = -1;
+                 }
+                 else if (j > 0 && j < length - 1 && matrix[i][j] != -1)
+                 {
+                     int tmp = calculateMaxNodeValue(matrix[i - 1][j],
+                    		 matrix[i - 1][j - 1]);
+                     if (tmp == -1)
+                     {
+                    	 matrix[i][ j] = -1;
+                     }
+                     else
+                    	 matrix[i][j] += tmp;
+                 }
 
-			}
-
-		}
-
-		// return the top element
-		// which stores the maximum sum
-
-		return matrix[0][0];
+                 else if (j > 0 && matrix[i][j] != -1)
+                 {
+                     int tmp = calculateMaxNodeValue(matrix[i - 1][j],
+                    		 matrix[i - 1][j - 1]);
+                     if (tmp == -1)
+                     {
+                    	 matrix[i][j] = -1;
+                     }
+                     else
+                    	 matrix[i][j] += tmp;
+                 }
+                 
+                 else if (j != 0 && j < length - 1 && matrix[i][j] != -1)
+                 {
+                     int tmp = calculateMaxNodeValue(matrix[i - 1][j],
+                    		 matrix[i - 1][j - 1]);
+                     if (tmp == -1)
+                     {
+                    	 matrix[i][j] = -1;
+                     }
+                     else
+                    	 matrix[i][j] += tmp;
+                 }
+                 result = Math.max(matrix[i][j], result);
+             }
+         } 
+         return result;
 	}
 
+
+	public static int calculateMaxNodeValue(int input1, int input2)  //returns max value
+      {
+          if (input1 == -1 && input2 == -1 || input1 == 0 && input2 == 0)
+              return -1;
+          else
+              return Math.max(input1, input2);
+      }
+
+	
+	
 	public static void printMatrix(int[][] matrix) {
 		for (int i = 0; i < matrix.length; i++) {
 			for (int j = 0; j < matrix[i].length; j++) {
